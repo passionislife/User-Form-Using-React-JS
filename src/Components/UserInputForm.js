@@ -15,21 +15,23 @@ function UserInputData(props) {
 
   function submitHandler(event) {
     event.preventDefault();
-    if(enteredName === '' || +enteredAge === 0)
-    {
+    if (!enteredName || !enteredAge) {
         alert("Empty Fields");
+        setEnteredName('');
+        setEnteredAge('');
+        return;
     }
-    else{
-        const userData = {
-            name: enteredName,
-            age: +enteredAge,
-            id: Math.random().toString()
-          };
-          props.onSaveData(userData);
-          setEnteredName('');
-          setEnteredAge('');
+    if(+enteredAge < 0)
+    {
+        alert("Age cannot be negetive");
+        setEnteredAge('');
+        return;
     }
-  }
+    const userData = { name: enteredName, age: +enteredAge, id: Math.random().toString() };
+    props.onSaveData(userData);
+    setEnteredName('');
+    setEnteredAge('');
+}
   return (
     <div>
       <form className="input-data">
