@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import UserInputData from "./Components/UserInputForm";
 import OutputData from "./Components/OutputData";
 
-const USER_DATA = [{ name: "Yusuf", age: 23, id: 1 }];
+const USER_DATA = [];
 function App() {
   const [insertData, setInsertData] = useState(USER_DATA);
   function userDataHandler(data) {
