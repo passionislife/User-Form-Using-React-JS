@@ -1,20 +1,25 @@
-import React, { useState } from "react";
-import UserInputData from "./Components/UserInputForm";
-import OutputData from "./Components/OutputData";
+import React, { useState } from 'react';
 
-const USER_DATA = [];
+import AddUser from './components/Users/AddUser';
+import UsersList from './components/Users/UsersList';
+
 function App() {
-  const [insertData, setInsertData] = useState(USER_DATA);
-  function userDataHandler(data) {
-    setInsertData((USER_DATA) => {
-      return [data, ...USER_DATA];
+  const [usersList, setUsersList] = useState([]);
+
+  const addUserHandler = (uName, uAge) => {
+    setUsersList((prevUsersList) => {
+      return [
+        ...prevUsersList,
+        { name: uName, age: uAge, id: Math.random().toString() },
+      ];
     });
-  }
+  };
+
   return (
-    <div>
-      <UserInputData onSaveData={userDataHandler} />
-      <OutputData data={insertData} />
-    </div>
+    <React.Fragment>
+      <AddUser onAddUser={addUserHandler} />
+      <UsersList users={usersList} />
+    </React.Fragment>
   );
 }
 
